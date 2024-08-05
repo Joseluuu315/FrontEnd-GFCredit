@@ -398,6 +398,12 @@ body{
                             innovadoras y efectivas para tu negocio o para personas físicas. La confianza y satisfacción
                             de nuestros clientes
                             nos avalan.</p>
+						<br>
+						<p class="mb_2UpRem">
+							Nuestros horarios<br><br>
+							9:00  – 19:00 <br>
+							Lunes – Viernes
+						</p>
                         <div class="consulting_bottom">
                             <a href="tel:+34931701687">
                                 <div class="left_text">
