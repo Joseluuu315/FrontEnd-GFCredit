@@ -3,6 +3,33 @@
  * Template Name: Custom Template
  */
 get_header(); 
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recoger datos del formulario
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+    $phone = filter_var($_POST['phone'], FILTER_SANITIZE_STRING);
+    $select_menu = filter_var($_POST['select_menu'], FILTER_SANITIZE_STRING);
+
+    // Validación básica
+    if (!empty($name) && !empty($email) && !empty($phone) && !empty($select_menu)) {
+        // Detalles del correo
+        $to = "admin@gfcredit.com";  // Cambia esto por tu correo
+        $subject = "Nuevo contacto desde la web";
+        $body = "Nombre: $name\nCorreo: $email\nTeléfono: $phone\nInterés: $select_menu";
+        $headers = "From: noreply@gfcredit.com\r\nReply-To: noreply@gfcredit.com";
+
+        // Enviar correo
+        if (mail($to, $subject, $body, $headers)) {
+            $msg = "Mensaje enviado exitosamente.";
+        } else {
+            $msg = "Error al enviar el mensaje.";
+        }
+    } else {
+        $msg = "Todos los campos son obligatorios.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +63,30 @@ get_header();
     <!-- Captcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+			<div id="empezar">
+	
+		</div>
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+    var header = document.querySelector('.header');
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) { // Puedes ajustar este valor según lo necesario
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+});
+	</script>
 <style>
+	.header{
+		background-color: transparent;
+    	transition: background-color 0.3s ease;
+	}
+	.header.scrolled{
+		background-color: #20163d;
+	}
 body{
     width: 100vw;
     position: relative;
@@ -96,6 +146,10 @@ body{
 .text-area {
     position: relative;
     z-index: 2;
+    width: 100%;
+    max-width: none;
+	   margin: 0;
+    padding: 0;
 }
 
 .title_ch {
@@ -122,34 +176,161 @@ body{
 .btn-theme:hover {
     background-color: #0056b3;
 }
+.title_ch {
+    max-width: 100%;
+}
 
+	.menu-centrado {
+		display: flex;
+    justify-content: center;
+    margin-top: 10px; 
+	}
+	.contenido-item {
+		color: black;
+	}
+	
+	.contenido-item {
+		color: black;
+		text-align: center;
+	}
+	
+	        .full-width-gallery {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 100vw;
+            overflow: hidden;
+        }
 
+        .full-width-gallery a {
+            flex: 1;
+            text-decoration: none;
+        }
+
+        .full-width-gallery img {
+            width: 100%;
+            height: auto; /* Mantener proporción */
+            display: block;
+        }
 </style>
 
-    <!-- business_grow Start -->
-    <section class="business_grow">
-        <div class="bg_hero">
-            <img src="https://i.imgur.com/1s6y54a.png" alt="" class="rellax" data-rellax-speed="-3"
-                data-rellax-tablet-speed="-3" data-rellax-mobile-speed="1" data-rellax-xs-speed="-1">
-        </div>
-        <div class="section-layout">
-            <div class="container position-relative">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="text-area">
-                            <h1 class="title_ch">Seguridad financiera para cada etapa de tu vida</h1>
-                            <p class="text-white content_message content_ch">Invierte en tu futuro con la sabiduría de
-                                la experiencia.</p>
-                            <a href="#contact" class="btn-theme mr-4"><span>Contáctanos</span></a>
-                        </div>
+<!-- business_grow Start -->
+<section class="business_grow">
+    <div class="bg_hero">
+        <img src="https://i.imgur.com/1s6y54a.png" alt="" class="rellax" data-rellax-speed="-3"
+            data-rellax-tablet-speed="-3" data-rellax-mobile-speed="1" data-rellax-xs-speed="-1">
+    </div>
+
+    <div class="section-layout">
+        <div class="container position-relative">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-area">
+                        <!-- Título y logotipo -->
+                        <h1 class="title_ch">Gestión Financiera de Crédito</h1>
+						<p style="color: white;">
+							Gestión financiera de Crédito es un Bróker que ofrece financiación según las necesidades del cliente.
+							Cuando un persona física o sociedad acude a nuestra ayuda, sea para financiar la compra de una vivienda, naves industriales, compra de nuevo stock o necesita liquidez para potenciar su negocio, nuestros gestores analizan el caso y dependiendo de sus características, lo derivamos a un tipo de financiación, sea dentro de la banca tradicional o dentro de la financiación privada.
+							La información que nos ofrece el cliente nos permite comprender cuales son sus necesidades de solvencia y la capacidad de retorno de la inversión. Nosotros somos capaces de diagnosticar la situación y preparar un plan de trabajo a medida. Siempre existe un tipo de financiamiento para cada caso.
+						</p>
+                        <a href="#contact" class="btn-theme mr-4"><span>Contáctanos</span></a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- business_grow End -->
+    </div>
+</section>
+<!-- business_grow End -->
 
+<!-- Script para mostrar el contenido de Misión, Visión y Valores -->
+<script>
+function mostrarContenido(id) {
+    // Ocultar todos los contenidos
+    var items = document.querySelectorAll('.contenido-item');
+    items.forEach(function(item) {
+        item.style.display = 'none';
+    });
 
+    // Mostrar el contenido seleccionado
+    document.getElementById(id).style.display = 'block';
+}
+</script>
+
+ <!-- Menú Misión, Visión y Valores -->
+                        <div class="menu-centrado">
+							<a class="text-black" style="font-size: 1.5rem; font-weight: bold;">Nuestra &nbsp;</a>	
+                            <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('mision')" style="font-size: 1.5rem; font-weight: bold;">Misión</a> | 
+                            <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('vision')" style="font-size: 1.5rem; font-weight: bold;">Visión</a> | 
+                            <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('valores')" style="font-size: 1.5rem; font-weight: bold;">Valores</a>
+                        </div>
+
+                        <!-- Contenido de Misión, Visión y Valores -->
+<div id="contenido" class="contenido">
+    <!-- Imagen Principal -->
+<div style="text-align: center; margin-bottom: 20px;">
+    <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/1-PRESENTACION-DE-MISION-VISION-VALORES.jpg" 
+         alt="Presentación Misión Visión Valores" 
+         style="max-width: 30%; height: auto;">
+</div>
+
+    <div id="mision" class="contenido-item" style="display:none; text-align: justify; margin: 0 auto; max-width: 800px;">
+        <h3 style="color: black; text-align: center;">Misión</h3>
+        <!-- Imagen para Misión -->
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/2-MISION.jpg" alt="Imagen de Misión" style="max-width: 100%; height: auto;">
+        </div>
+         <p style="color: black;">Brindar soluciones financieras personalizadas y responsables a quienes buscan apoyo para alcanzar sus metas, ya sea en la compra de una vivienda, el crecimiento de un negocio o el fortalecimiento de su liquidez. Nos comprometemos a analizar cada caso individualmente, ofreciendo planes de financiamiento adecuados y accesibles que se ajusten a las características y necesidades de cada cliente, sin importar su perfil o situación financiera.<br></p>
+
+    </div>
+
+    <div id="vision" class="contenido-item" style="display:none; text-align: justify; margin: 0 auto; max-width: 800px;">
+        <h3 style="color: black; text-align: center;">Visión</h3>
+        <!-- Imagen para Visión -->
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/3-VISION.jpg" alt="Imagen de Visión" style="max-width: 100%; height: auto;">
+        </div>
+                <p style="color: black;">Ser el bróker de referencia en el ámbito de financiamiento personalizado, promoviendo una cultura de igualdad, respeto y apoyo mutuo. Aspiramos a construir relaciones de confianza y comprensión con nuestros clientes, donde cada persona se sienta valorada y comprendida. Queremos ser una empresa que no solo facilite la financiación, sino que inspire un cambio positivo en la industria y en la vida de nuestros clientes.<br></p>
+
+    </div>
+
+    <div id="valores" class="contenido-item" style="display:none; text-align: justify; margin: 0 auto; max-width: 800px;">
+        <h3 style="color: black; text-align: center;">Valores</h3>
+        <!-- Imagen para Valores -->
+        <div style="text-align: center; margin-bottom: 15px;">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/4-VALORES.jpg" alt="Imagen de Valores" style="max-width: 100%; height: auto;">
+        </div>
+ <ul style="color: black; text-align: justify;">
+            <li>1. Empatía y respeto: Nos preocupamos profundamente por comprender las necesidades y circunstancias de cada persona, sin juzgar, y tratándolos con el respeto y la dignidad que merecen.</li>
+            <br>
+            <li>2. Igualdad e inclusión: Creemos que todas las personas deben tener acceso a oportunidades financieras sin importar su origen, raza o género. Promovemos un ambiente donde la igualdad y la diversidad sean la base de nuestro trabajo.</li>
+            <br>
+            <li>3. Transparencia y ética: La confianza es esencial, por eso operamos con honestidad y claridad en cada proceso, garantizando que nuestros clientes entiendan completamente sus opciones.</li>
+            <br>
+            <li>4. Compromiso y dedicación: Nos esforzamos por encontrar siempre la mejor solución para cada cliente, comprometiéndonos a guiarlos y acompañarlos en cada paso de su proceso financiero.</li>
+            <br>
+            <li>5. Pasión por ayudar: Inspirados en la idea de que el éxito individual contribuye al bienestar colectivo, nos dedicamos a ayudar a nuestros clientes a alcanzar sus sueños con soluciones a su medida.<br></li>
+        </ul>
+    </div>
+</div>
+	<script>
+    function mostrarContenido(id) {
+        // Oculta todos los elementos de contenido
+        const items = document.querySelectorAll('.contenido-item');
+        items.forEach(item => {
+            item.style.display = 'none';
+        });
+
+        // Muestra el elemento seleccionado
+        const selectedItem = document.getElementById(id);
+        if (selectedItem) {
+            selectedItem.style.display = 'block';
+
+            // Desplaza la página hasta el elemento
+            selectedItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+</script>
 
     <!-- On Time Start -->
     <section class="on_time_area section_pyUp">
@@ -182,7 +363,7 @@ body{
                                 </svg>
                             </div>
                             <div class="text_part">
-                                <h5 class="content_title_mb">Tecnologías <br /> Avanzadas.</h5>
+                                <h5 class="content_title_mb" href="https://www.gfcredit.es/?page_id=76">Financiación <br /> privada.</h5>
                                 <p class="">Utilizamos las últimas tecnologías en análisis financiero y gestión de
                                     carteras para maximizar tus rendimientos, minimizando al mismo tiempo los riesgos.
                                 </p>
@@ -209,7 +390,31 @@ body{
         </div>
     </section>
     <!-- On Time End -->
-
+	
+	
+	<!-- Area de colaboradores Inicio -->   
+	<div class="title_area title_mb">
+        <h2 class="service_title" style="text-align: center;">Colaboradores</h2>
+	</div>
+	
+	 <section class="full-width-gallery">
+        <a href="https://www.dgtalit.es" target="_blank">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.30.45.png" alt="Imagen 1">
+        </a>
+        <a href="https://www.abanca.com/es/" target="_blank">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.29.27.png" alt="Imagen 2">
+        </a>
+        <a href="https://www.caixabank.es/particular/home/particulares_es.html" target="_blank">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.27.40.png" alt="Imagen 3">
+        </a>
+        <a href="https://portal.kutxabank.es/cs/Satellite/kb/es/particulares" target="_blank">
+            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.24.05.png" alt="Imagen 4">
+        </a>
+    </section>
+	
+	<!-- Area de colaboradores Final-->
+	
+	
     <!-- Services Area Start -->
     <section class="services_area section_pyDown" id="service">
         <div class="section-layout">
@@ -401,7 +606,8 @@ body{
 						<br>
 						<p class="mb_2UpRem">
 							Nuestros horarios<br><br>
-							9:00  – 19:00 <br>
+							09:00  – 13:00 <br>
+							16:00  – 20:00 <br><br>
 							Lunes – Viernes
 						</p>
                         <div class="consulting_bottom">
@@ -422,50 +628,67 @@ body{
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="consulting_contact">
-                        <p class="color">OBTÉN MÁS INFORMACIÓN</p>
-                        <p class="mb_3halfRem">¿Quieres que te llamemos? Rellena el formulario y nos pondremos en
-                            contacto contigo lo antes posible</p>
-                        <form method="POST" autocomplete="off" id="frmContactus" class="contact_form">
-                            <div class="in-box">
-                                <input type="text" class="form-control" name="name" id="name"
-                                    placeholder="Ingresa tu nombre">
-                            </div>
-                            <div class="in-box">
-                                <input type="email" class="form-control" name="email" id="email"
-                                    placeholder="Ingresa tu correo electrónico">
-                            </div>
-                            <div class="in-box">
-                                <input type="tel" class="form-control" name="phone" id="phone"
-                                    placeholder="Ingresa tu teléfono">
-                            </div>
-                            <div class="in-box">
-                                <select class="form-select form-control" name="select_menu" id="select_menu"
-                                    aria-label="Ejemplo de selección predeterminada">
-                                    <option selected disabled>Selecciona una opción</option>
-                                    <option value="Hipotecas">Hipotecas</option>
-                                    <option value="Planificación financiera">Planificación financiera</option>
-                                    <option value="Jubilación">Jubilación</option>
-                                    <option value="Hipotecas no residentes">Hipotecas no residentes</option>
-                                    <option value="Hipotecas o compras en país de origen">Hipotecas o compras en país de
-                                        origen</option>
-                                    <option value="Líneas de crédito">Líneas de crédito</option>
-                                </select>
-                            </div>
-                            <div class="g-recaptcha mb_1UpRem" id="reCaptcha"
-                                data-sitekey="6LctligpAAAAAJ4lR3y0rsVtkuzgdgUoBAigzoZF"></div>
-                            <span class="message-error error"></span>
+    <div class="consulting_contact">
+        <p class="color">OBTÉN MÁS INFORMACIÓN</p>
+        <p class="mb_3halfRem">¿Quieres que te llamemos? Rellena el formulario y nos pondremos en contacto contigo lo antes posible</p>
+<form id="frmContactus" class="contact_form">
+            <div class="in-box">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Ingresa tu nombre" required>
+            </div>
+            <div class="in-box">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Ingresa tu correo electrónico" required>
+            </div>
+            <div class="in-box">
+                <input type="tel" class="form-control" name="phone" id="phone" placeholder="Ingresa tu teléfono" required>
+            </div>
+            <div class="in-box">
+                <select class="form-select form-control" name="select_menu" id="select_menu" aria-label="Ejemplo de selección predeterminada" required>
+                    <option selected disabled>Selecciona una opción</option>
+                    <option value="Hipotecas">Hipotecas</option>
+                    <option value="Capital privado">Capital privado</option>
+                    <option value="Planificación financiera">Planificación financiera</option>
+                    <option value="Jubilación">Jubilación</option>
+                    <option value="Hipotecas no residentes">Hipotecas no residentes</option>
+                    <option value="Hipotecas o compras en país de origen">Hipotecas o compras en país de origen</option>
+                    <option value="Líneas de crédito">Líneas de crédito</option>
+                </select>
+            </div>
+            <div class="g-recaptcha mb_1UpRem" id="reCaptcha" data-sitekey="6LctligpAAAAAJ4lR3y0rsVtkuzgdgUoBAigzoZF"></div>
+            <span class="message-error error"></span>
+            <span id="msg"></span>
+            <button type="submit" class="btn-theme large" name="submit" id="submit">Enviar Mensaje</button>
+        </form>
+    </div>
+</div>
 
-                            <span id="msg"></span>
-
-                            <button type="submit" class="btn-theme large" name="submit" id="submit">Enviar
-                                Mensaje</button>
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+jQuery(document).ready(function($) {
+    $('#frmContactus').submit(function(e) {
+        e.preventDefault(); // Evitar que el formulario se envíe de forma convencional
+
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php', // URL del archivo admin-ajax.php
+            type: 'POST',
+            data: $(this).serialize() + '&action=enviar_formulario_contacto', // Serializar los datos del formulario y añadir la acción
+            success: function(response) {
+                // Mostrar la respuesta del servidor en un alert
+                alert(response); // Muestra un cuadro de alerta con la respuesta
+            },
+            error: function(xhr, status, error) {
+                // Mostrar el error en un alert
+                alert('Error al enviar el formulario: ' + xhr.responseText); // Alerta si hay un error en la solicitud
+            }
+        });
+    });
+});
+</script>
+
+
     <!-- Área de Consultoría Fin -->
     <a href="#" class="scrollToTop"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
             <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -482,54 +705,18 @@ body{
     <!-- bootstrap -->
     <script src="assets/js/bootstrap.min.js"></script>
     <!-- custom -->
-    <script src="assets/js/custom.js"></script>
-    <script>
-        document.getElementById("dateY").innerHTML = new Date().getFullYear();
-        document.getElementById('frmContactus').addEventListener('submit', function (event) {
-            event.preventDefault();
-            var nombre = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var telefono = document.getElementById('phone').value;
-            var tema = document.getElementById('select_menu').value;
+   <!-- <script src="assets/js/custom.js"></script> -->
+	<script>
+		window.addEventListener('scroll', function() {
+    var header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.backgroundColor = '#20163d'; // Fondo morado con transparencia
+    } else {
+        header.style.backgroundColor = 'transparent';
+    }
+});
 
-            // Obtener la respuesta del reCAPTCHA
-            var recaptchaResponse = grecaptcha.getResponse();
-
-            // Verificar si el reCAPTCHA fue resuelto
-            if (recaptchaResponse.length == 0) {
-                alert('Por favor, resuelve el reCAPTCHA.');
-                return;
-            }
-
-            var formData = new FormData();
-            formData.append('name', nombre);
-            formData.append('email', email);
-            formData.append('phone', telefono);
-            formData.append('select_menu', tema);
-            formData.append('g-recaptcha-response', recaptchaResponse);
-
-            var requestOptions = {
-                method: 'POST',
-                body: formData,
-                redirect: 'follow'
-            };
-
-            fetch('send_mail.php', requestOptions)
-                .then(response => response.text())
-                .then(result => {
-                    //{"status":"success","message":"Su mensaje ha sido enviado con \u00e9xito."}
-                    let data = JSON.parse(result);
-                    if (data.status == 'success') {
-                        document.getElementById('msg').innerHTML = '<span class="message-success success">Mensaje enviado correctamente</span>';
-                        document.getElementById('frmContactus').reset();
-                    } else {
-                        document.getElementById('msg').innerHTML = '<span class="message-error error">Error al enviar el mensaje</span>';
-                    }
-                })
-                .catch(error => console.log('error', error));
-        });
-
-    </script>
+	</script>
 </body>
 
 </html>
