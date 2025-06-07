@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Custom Template
+ * Template Name: Custom Template Wordpress
  */
 get_header(); 
 
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validación básica
     if (!empty($name) && !empty($email) && !empty($phone) && !empty($select_menu)) {
         // Detalles del correo
-        $to = "admin@gfcredit.com";  // Cambia esto por tu correo
+        $to = "admin@gfcredit.com";  
         $subject = "Nuevo contacto desde la web";
         $body = "Nombre: $name\nCorreo: $email\nTeléfono: $phone\nInterés: $select_menu";
         $headers = "From: noreply@gfcredit.com\r\nReply-To: noreply@gfcredit.com";
@@ -63,11 +63,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Captcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
-			<div id="empezar">
+
+    <div id="empezar"></div> <!-- Botón para empezar -->
 	
-		</div>
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
+    <script>
+        // Aquí tenemos el codigo que provoca que el header se oculte al scrollear
+	document.addEventListener('DOMContentLoaded', function() {
     var header = document.querySelector('.header');
     
     window.addEventListener('scroll', function() {
@@ -75,25 +76,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header.classList.add('scrolled');
         } else {
             header.classList.remove('scrolled');
-        }
+            }
+        });
     });
-});
 	</script>
-<style>
-	.header{
-		background-color: transparent;
-    	transition: background-color 0.3s ease;
-	}
-	.header.scrolled{
-		background-color: #20163d;
-	}
-body{
-    width: 100vw;
-    position: relative;
-    margin: 0px;
-    padding: 0px;
-}
-</style>
+    <style>
+        .header{
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+        }
+        .header.scrolled{
+            background-color: #20163d;
+        }
+        body{
+            width: 100vw;
+            position: relative;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+
 <body>
 <style>
 .business_grow {
@@ -105,7 +107,7 @@ body{
     .site-content .ast-container {
         display: block !important;
         width: 100%;
-        max-width: 100%; /* O el valor que necesites */
+        max-width: 100%; /* Ajusta el valor que necesites */
         margin: 0 auto; /* Centra el contenedor si es necesario */
     }
 }
@@ -180,39 +182,39 @@ body{
     max-width: 100%;
 }
 
-	.menu-centrado {
-		display: flex;
+.menu-centrado {
+    display: flex;
     justify-content: center;
     margin-top: 10px; 
-	}
-	.contenido-item {
-		color: black;
-	}
+}
+.contenido-item {
+    color: black;
+}
 	
-	.contenido-item {
-		color: black;
-		text-align: center;
-	}
+.contenido-item {
+    color: black;
+    text-align: center;
+}
 	
-	        .full-width-gallery {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 100vw;
-            overflow: hidden;
-        }
+.full-width-gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+}
 
-        .full-width-gallery a {
-            flex: 1;
-            text-decoration: none;
-        }
+.full-width-gallery a {
+    flex: 1;
+    text-decoration: none;
+}
 
-        .full-width-gallery img {
-            width: 100%;
-            height: auto; /* Mantener proporción */
-            display: block;
-        }
+.full-width-gallery img {
+    width: 100%;
+    height: auto; /* Mantener proporción */
+    display: block;
+}
 </style>
 
 <!-- business_grow Start -->
@@ -257,12 +259,12 @@ function mostrarContenido(id) {
 }
 </script>
 
- <!-- Menú Misión, Visión y Valores -->
-                        <div class="menu-centrado">
-							<a class="text-black" style="font-size: 1.5rem; font-weight: bold;">Nuestra &nbsp;</a>	
-                            <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('mision')" style="font-size: 1.5rem; font-weight: bold;">Misión</a> | 
-                            <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('vision')" style="font-size: 1.5rem; font-weight: bold;">Visión</a> | 
-                            <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('valores')" style="font-size: 1.5rem; font-weight: bold;">Valores</a>
+<!-- Menú Misión, Visión y Valores -->
+<div class="menu-centrado">
+    <a class="text-black" style="font-size: 1.5rem; font-weight: bold;">Nuestra &nbsp;</a>	
+    <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('mision')" style="font-size: 1.5rem; font-weight: bold;">Misión</a> | 
+    <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('vision')" style="font-size: 1.5rem; font-weight: bold;">Visión</a> | 
+    <a href="javascript:void(0);" class="menu-item text-black" onclick="mostrarContenido('valores')" style="font-size: 1.5rem; font-weight: bold;">Valores</a>
                         </div>
 
                         <!-- Contenido de Misión, Visión y Valores -->
@@ -300,7 +302,7 @@ function mostrarContenido(id) {
         <div style="text-align: center; margin-bottom: 15px;">
             <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/4-VALORES.jpg" alt="Imagen de Valores" style="max-width: 100%; height: auto;">
         </div>
- <ul style="color: black; text-align: justify;">
+        <ul style="color: black; text-align: justify;">
             <li>1. Empatía y respeto: Nos preocupamos profundamente por comprender las necesidades y circunstancias de cada persona, sin juzgar, y tratándolos con el respeto y la dignidad que merecen.</li>
             <br>
             <li>2. Igualdad e inclusión: Creemos que todas las personas deben tener acceso a oportunidades financieras sin importar su origen, raza o género. Promovemos un ambiente donde la igualdad y la diversidad sean la base de nuestro trabajo.</li>
@@ -313,7 +315,7 @@ function mostrarContenido(id) {
         </ul>
     </div>
 </div>
-	<script>
+<script>
     function mostrarContenido(id) {
         // Oculta todos los elementos de contenido
         const items = document.querySelectorAll('.contenido-item');
@@ -392,57 +394,56 @@ function mostrarContenido(id) {
     <!-- On Time End -->
 	
 	
-	<!-- Area de colaboradores Inicio -->   
-	<div class="title_area title_mb">
-        <h2 class="service_title" style="text-align: center;">Colaboradores</h2>
-	</div>
+<!-- Area de colaboradores Inicio -->   
+<div class="title_area title_mb">
+    <h2 class="service_title" style="text-align: center;">Colaboradores</h2>
+</div>
 	
-	 <section class="full-width-gallery">
-        <a href="https://www.dgtalit.es" target="_blank">
-            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.30.45.png" alt="Imagen 1">
-        </a>
-        <a href="https://www.abanca.com/es/" target="_blank">
-            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.29.27.png" alt="Imagen 2">
-        </a>
-        <a href="https://www.caixabank.es/particular/home/particulares_es.html" target="_blank">
-            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.27.40.png" alt="Imagen 3">
-        </a>
-        <a href="https://portal.kutxabank.es/cs/Satellite/kb/es/particulares" target="_blank">
-            <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.24.05.png" alt="Imagen 4">
-        </a>
-    </section>
+<section class="full-width-gallery">
+    <a href="https://www.dgtalit.es" target="_blank">
+        <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.30.45.png" alt="Imagen 1">
+    </a>
+    <a href="https://www.abanca.com/es/" target="_blank">
+        <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.29.27.png" alt="Imagen 2">
+    </a>
+    <a href="https://www.caixabank.es/particular/home/particulares_es.html" target="_blank">
+        <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.27.40.png" alt="Imagen 3">
+    </a>
+    <a href="https://portal.kutxabank.es/cs/Satellite/kb/es/particulares" target="_blank">
+        <img src="http://www.gfcredit.es/wp-content/uploads/2024/11/Captura-de-Pantalla-2024-11-13-a-las-15.24.05.png" alt="Imagen 4">
+    </a>
+</section>
 	
 	<!-- Area de colaboradores Final-->
 	
 	
     <!-- Services Area Start -->
-    <section class="services_area section_pyDown" id="service">
-        <div class="section-layout">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="title_area title_mb">
-                            <h2 class="service_title">Servicios</h2>
-                            <p>Especializados en</p>
-                        </div>
+<section class="services_area section_pyDown" id="service">
+    <div class="section-layout">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title_area title_mb">
+                        <h2 class="service_title">Servicios</h2>
+                        <p>Especializados en</p>
+                    </div>
 
-                        <div class="services">
+                    <div class="services">
 
-                            <div class="row">
-                                <div class="col-md-6 col-lg-4">
-                                    <div class="part">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
-                                            viewBox="0 0 24 24">
-                                            <path fill="#4f46e5"
-                                                d="M17 9h2V7h-2v2Zm0 4h2v-2h-2v2Zm0 4h2v-2h-2v2Zm0 4v-2h4V5h-9v1.4l-2-1.45V3h13v18h-6ZM1 21V11l7-5l7 5v10H9v-5H7v5H1Zm2-2h2v-5h6v5h2v-7L8 8.45L3 12v7Zm14-9Zm-6 9v-5H5v5v-5h6v5Z" />
-                                        </svg>
-                                        <div class="text_part">
-                                            <h3 class="part_title">Hipotecas</h3>
-                                            <p>
-                                                Encontramos la hipoteca que mejor se adapta a tus
-                                                necesidades y presupuesto.
-                                            </p>
-                                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="part">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45"
+                                        viewBox="0 0 24 24">
+                                        <path fill="#4f46e5"
+                                            d="M17 9h2V7h-2v2Zm0 4h2v-2h-2v2Zm0 4h2v-2h-2v2Zm0 4v-2h4V5h-9v1.4l-2-1.45V3h13v18h-6ZM1 21V11l7-5l7 5v10H9v-5H7v5H1Zm2-2h2v-5h6v5h2v-7L8 8.45L3 12v7Zm14-9Zm-6 9v-5H5v5v-5h6v5Z" />
+                                    </svg>
+                                    <div class="text_part">
+                                        <h3 class="part_title">Hipotecas</h3>
+                                        <p>
+                                            Encontramos la hipoteca que mejor se adapta a tus
+                                            necesidades y presupuesto.
+                                        </p>
                                     </div>
                                 </div>
 
@@ -590,6 +591,7 @@ function mostrarContenido(id) {
         </div>
     </div>
     <!-- countdown Area End -->
+    
     <!-- Área de Consultoría Inicio -->
     <section class="consulting section_padding" id="contact">
         <div class="container">
@@ -631,7 +633,9 @@ function mostrarContenido(id) {
     <div class="consulting_contact">
         <p class="color">OBTÉN MÁS INFORMACIÓN</p>
         <p class="mb_3halfRem">¿Quieres que te llamemos? Rellena el formulario y nos pondremos en contacto contigo lo antes posible</p>
-<form id="frmContactus" class="contact_form">
+        
+        <!--Form para correo -->
+        <form id="frmContactus" class="contact_form">
             <div class="in-box">
                 <input type="text" class="form-control" name="name" id="name" placeholder="Ingresa tu nombre" required>
             </div>
@@ -658,12 +662,12 @@ function mostrarContenido(id) {
             <span id="msg"></span>
             <button type="submit" class="btn-theme large" name="submit" id="submit">Enviar Mensaje</button>
         </form>
+        <!--Fin del form-->
     </div>
 </div>
-
-            </div>
         </div>
-    </section>
+    </div>
+</section>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -689,25 +693,25 @@ jQuery(document).ready(function($) {
 </script>
 
 
-    <!-- Área de Consultoría Fin -->
-    <a href="#" class="scrollToTop"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
+<!-- Área de Consultoría Fin -->
+<a href="#" class="scrollToTop"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
             <path fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M30 20L16 8L2 20" />
         </svg></a>
 
-    <!-- Script -->
-    <script src="assets/js/jquery.min.js"></script>
-    <!-- plugins -->
-    <script src="assets/js/jquery.validate.min.js"></script>
-    <script src="assets/js/slick.js"></script>
-    <script src="assets/js/rellax.min.js"></script>
-    <script src="assets/js/countMe.min.js"></script>
-    <!-- bootstrap -->
-    <script src="assets/js/bootstrap.min.js"></script>
-    <!-- custom -->
-   <!-- <script src="assets/js/custom.js"></script> -->
-	<script>
-		window.addEventListener('scroll', function() {
+<!-- Script -->
+<script src="assets/js/jquery.min.js"></script>
+<!-- plugins -->
+<script src="assets/js/jquery.validate.min.js"></script>
+<script src="assets/js/slick.js"></script>
+<script src="assets/js/rellax.min.js"></script>
+<script src="assets/js/countMe.min.js"></script>
+<!-- bootstrap -->
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- custom -->
+<script src="assets/js/custom.js"></script>
+<script>
+	window.addEventListener('scroll', function() {
     var header = document.querySelector('header');
     if (window.scrollY > 50) {
         header.style.backgroundColor = '#20163d'; // Fondo morado con transparencia
@@ -715,8 +719,7 @@ jQuery(document).ready(function($) {
         header.style.backgroundColor = 'transparent';
     }
 });
-
-	</script>
+</script>
 </body>
 
 </html>
